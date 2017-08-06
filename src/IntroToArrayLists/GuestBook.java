@@ -9,8 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import package2.ChuckleClicker;
-
 public class GuestBook implements ActionListener {
 	// Create a GUI with two buttons. One button reads "Add Name" and the other
 	// button reads "View Names".
@@ -27,17 +25,18 @@ public class GuestBook implements ActionListener {
 	JPanel panel = new JPanel();
 	JButton b1 = new JButton("Add Name");
 	JButton b2 = new JButton("View Names");
+	ArrayList<String> names = new ArrayList<String>();
+	int counter = 4;
+	String s = "";
 
 	public static void main(String[] args) {
 		GuestBook c = new GuestBook();
 		c.makeButtons();
 
-		ArrayList<String> names = new ArrayList<String>();
-
-		names.add("Bob Banders");
-		names.add("Sandy Summers");
-		names.add("Greg Ganders");
-		names.add("Donny Doners");
+		c.names.add("Bob Banders");
+		c.names.add("Sandy Summers");
+		c.names.add("Greg Ganders");
+		c.names.add("Donny Doners");
 	}
 
 	public void makeButtons() {
@@ -57,15 +56,28 @@ public class GuestBook implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == b1) {
-			JOptionPane.showInputDialog("Type in your name.");
-
+			names.add(JOptionPane.showInputDialog("Type in your name."));
+			counter++;
 		}
 		if (e.getSource() == b2) {
-			for(String s : names){
-				System.out.println(s);
-				JOptionPane.showMessageDialog(null, "Guest 1: " + s);
-			}
+			s = "";
+			// JTextField t = new JTextField(100);
+			// JPanel p = new JPanel();
+			// JFrame n = new JFrame();
+			// p.add(t);
+			// n.add(p);
+			// n.pack();
+			// n.setVisible(true);
+			// n.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+			for (int i = 0; i < counter; i++) {
+				int z = i + 1;
+				s = s + "Guest " + z + ": " + names.get(i) + "\n";
+			}
+			JOptionPane.showMessageDialog(null, s);
+			// t.setText(s);
+			// JOptionPane.showMessageDialog(null, "Guest 1: " +s);
 		}
+
 	}
 }
