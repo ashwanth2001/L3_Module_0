@@ -58,10 +58,12 @@ public class LogSearch implements ActionListener {
 			}
 		}
 		if (e.getSource() == b3) {
-			String list = "";
-			for (int j = 0; j < log.size(); j++) {
-				list = list + log.get(1);
+			String list = "Guest Book: ";
+			for (int s : log.keySet()) {
+				String i = log.get(s);
+				list = list + "\nID: " + s + "  Name: " + i;
 			}
+			JOptionPane.showMessageDialog(null, list);
 		}
 	}
 	// * Create a HashMap of Integers for the keys and Strings for the values.
