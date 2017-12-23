@@ -11,12 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class TextUndoRedo implements KeyListener {
-	String s = "hi";
-	JFrame j = new JFrame();
-	JPanel panel = new JPanel();
-	JLabel label= new JLabel(s);
-	Stack<String> input = new Stack<String>();
-	Stack<String> back = new Stack<String>();
+	String s = "";
+	JFrame j;
+	JPanel panel;
+	JLabel label;
+	Stack<Character> back = new Stack<Character>();
 	
 	public static void main(String[] args) {
 		TextUndoRedo a = new TextUndoRedo();
@@ -25,10 +24,14 @@ public class TextUndoRedo implements KeyListener {
 	}
 	
 	void createUI() {
+		j = new JFrame();
+		panel = new JPanel();
+		label = new JLabel();
 		panel.add(label);
 		j.add(panel);
 		j.setVisible(true);
-		j.pack();
+		j.setSize(400,100);
+		j.addKeyListener(this);
 		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
@@ -41,15 +44,20 @@ public class TextUndoRedo implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		char add = e.getKeyChar();
-		System.out.println("a");
-		String set = label.getText()+Character.toString(add);
-		label.setText(set);
-		input.push(Character.toString(add));
-		
-		if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-			String add1 = input.pop();
-			back.push(add1);
+		String curr = label.getText();
+		if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE&&curr.length()>0) {
+			String popS = curr.substring(0, curr.length()-1);
+			back.push(curr.charAt(curr.length()-1));
+			label.setText(popS);
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_UP) {
+			Character undo = back.pop();
+			label.setText(curr+undo);
+		}
+		else {
+		curr+=(char)e.getKeyCode();
+		label.setText(curr);
+		panel.repaint();
 		}
 	}
 

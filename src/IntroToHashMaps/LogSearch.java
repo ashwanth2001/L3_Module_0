@@ -39,7 +39,7 @@ public class LogSearch implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == b1) {
-			String a1 = JOptionPane.showInputDialog("Enter and ID number.");
+			String a1 = JOptionPane.showInputDialog("Enter an ID number.");
 			int a2 = Integer.parseInt(a1);
 			String b = JOptionPane.showInputDialog("Enter a name.");
 			log.put(a2, b);

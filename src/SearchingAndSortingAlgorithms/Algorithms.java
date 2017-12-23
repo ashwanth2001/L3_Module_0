@@ -1,5 +1,6 @@
 package SearchingAndSortingAlgorithms;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -74,10 +75,17 @@ public class Algorithms {
 	}
 	
 	public static List<String> sortDNA(List<String> inp){
-		//List<Integer> sort = new List<Integer>();
 		for(int i = 0; i<inp.size(); i++) {
-			
+			for(int j = i+1; j<inp.size();j++) {
+				String a1 = inp.get(i);
+				String a2 = inp.get(j);
+				if(a1.length()<a2.length()) {
+					inp.set(i, a2);
+					inp.set(j, a1);
+				}
+			}
 		}
+		Collections.reverse(inp);
 		return inp;
 	}
 	
