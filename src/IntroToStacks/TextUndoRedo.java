@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class TextUndoRedo implements KeyListener {
-	String s = "";
+	String s = "hi";
 	JFrame j = new JFrame();
 	JPanel panel = new JPanel();
 	JLabel label= new JLabel(s);
@@ -27,8 +27,8 @@ public class TextUndoRedo implements KeyListener {
 	void createUI() {
 		panel.add(label);
 		j.add(panel);
-		j.pack();
 		j.setVisible(true);
+		j.pack();
 		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
@@ -42,7 +42,9 @@ public class TextUndoRedo implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		char add = e.getKeyChar();
-		label.setText(label.getText()+s);
+		System.out.println("a");
+		String set = label.getText()+Character.toString(add);
+		label.setText(set);
 		input.push(Character.toString(add));
 		
 		if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
